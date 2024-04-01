@@ -1,0 +1,61 @@
+@startuml
+
+class models.Animal{
+    IdAnimal:int
+    IdRecinto:int
+    IdEspcie:int
+    Idcuidador:int
+    Nombre:string
+    Edad:int
+    NombreCientifico:string
+    sexo:string
+}
+
+class models.Especie{
+    IdEspcie:int
+    Nombre:string
+    Descripcion: text
+}
+
+class models.Recinto{
+    IdRecinto:int
+    Nombre: string
+    Capacidad: int
+    Ubicacion: string
+}
+
+class models.Cuidador{
+    IdCuidador:int
+    Nombre: string
+    Apellido: string
+    Edad: int
+    Especialidad: string
+
+}
+
+class models.Actividad{
+    IdActividad:int
+    Nombre: string
+    Descripcion: string
+    Hora:date
+    Dia:date
+}
+
+
+class models.ActividadAnimal{
+    IdActividadAnimal:int
+    IdAnimal:int
+    IdActividad:int
+}
+
+models.Animal "*" -- "1" models.Especie 
+models.Recinto "1" -- "*" models.Animal 
+models.Animal "*" -- "1" models.Cuidador 
+' models.Cuidador "1" -- "*" models.Especialidad 
+' models.Recinto "1" -- "*" models.Actividad 
+models.Animal "1"---"*" models.ActividadAnimal
+models.ActividadAnimal "*" --- "1" models.Actividad
+
+
+
+@enduml
